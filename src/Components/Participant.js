@@ -38,7 +38,7 @@ const Participant = ({gameInfo, participant, championInfo, idx}) => {
   }
   return <Container>
       <ChampImg src={`http://ddragon.leagueoflegends.com/cdn/11.1.1/img/champion/${champName}.png`} />
-      <SummonerName style={gameInfo.participants[idx].teamId === 100 ? {color:"blue"} : {color:"red"}}><Link onClick={onClick}>{participant.player.summonerName}</Link></SummonerName>
+      <SummonerName style={gameInfo.participants[idx].teamId === 100 ? {color:"#39ACAF"} : {color:"#EAB544"}}><Link onClick={onClick}>{participant.player.summonerName}</Link></SummonerName>
   </Container>
 }
 

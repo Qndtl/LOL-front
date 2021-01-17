@@ -14,7 +14,7 @@ const Container = styled.div`
     grid-template-columns: 0.7fr 0.5fr 1fr;
   }
   border-left: 10px solid ${props => props.borderColor};
-  background-color: ${props => props.borderColor}0f;
+  background: linear-gradient(to right, ${props => props.bgColor1}, ${props => props.bgColor2})
 `;
 
 const MainCon = styled.div`
@@ -26,6 +26,7 @@ const MainCon = styled.div`
   align-items: center;
   span{
     font-weight: 600;
+    color: white;
   }
 `;
 const MyChampImg = styled.img`
@@ -50,13 +51,15 @@ const RuneCon = styled(SpellCon)`
 `;
 
 const KdaCon = styled.div`
+  height: 80%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   span{
     font-size: 18px;
     font-weight: 600;
+    color: white;
   }
   p{
     font-size: 14px;
@@ -207,7 +210,7 @@ const Match = ({gameId, lane, role, summonerInfo, championInfo, spellInfo, runeI
   }
   if(!loading){console.log('%c gameinfo','color: red, font-size: 25px');console.log(gameInfo);console.log('-----------------------------')}
   //if(!loading){console.log("myinfo");console.log(gameInfo.participantIdentities[myIndex]);console.log('--------------------------')}
-  return loading ? <Loader /> : <Container  borderColor={gameInfo.participants[myIndex].stats.win === true ? "#0000ff" : gameInfo.gameDuration < 300 ? "#808080" : "#ff0000"}>
+  return loading ? <Loader /> : <Container bgColor1={gameInfo.participants[myIndex].stats.win === true ? "#203748" : "#332B32"} bgColor2={gameInfo.participants[myIndex].stats.win === true ? "#171D24" : "#241E1E"} borderColor={gameInfo.participants[myIndex].stats.win === true ? "#001D6C" : gameInfo.gameDuration < 300 ? "#808080" : "#6A0101"}>
       <MainCon>
         <MyChampImg src={`http://ddragon.leagueoflegends.com/cdn/11.1.1/img/champion/${myChampionName}.png`} alt={myChampionName} />
         <span>{myChampionName}</span>

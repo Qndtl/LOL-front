@@ -9,13 +9,17 @@ const Wrapper = styled.div`
   place-items: center;
   grid-template-columns: repeat(3, 1fr);
   grid-template-areas: "first second third";
-  border-bottom: 1px solid grey;
   @media all and (max-width: 840px){
     grid-template-columns: 1fr;
     grid-template-rows: 2fr;
     grid-template-areas: 
     "first"
     "third";
+  }
+  background-color: #1D2A37;
+  color: white;
+  input{
+    color: white;
   }
 `;
 
@@ -85,16 +89,18 @@ const ThirdCon = styled.div`
   }
   input{
     width: 300px;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid white;
     font-size: 17px;
+    background-color: transparent;
   }
   input::placeholder{
     text-align: center;
+    color: white;
   }
   button{
     width: 50px;
     svg{
-      fill: rgba(0,0,0,0.5)
+      fill: white;
     }
   }
   @media all and (max-width: 840px){

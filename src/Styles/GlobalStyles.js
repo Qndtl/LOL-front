@@ -5,6 +5,7 @@ const GlobalStyles = createGlobalStyle`
   ${reset};
   body{
     box-sizing: border-box;
+    background: linear-gradient(to bottom, #223F55, #0E0E0E);
   }
   a{
     text-decoration: none;

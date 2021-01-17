@@ -21,24 +21,15 @@ const SoloRankCon = styled.div`
     height: 100px;
   }
   width: 100%;
-  background-color: skyblue;
+  background-color: #32465A;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  border: 1px solid #01B6C8;
 `;
 
-const TeamRankCon = styled.div`
-  img{
-    width: 100px;
-    height: 100px;
-  }
-  width: 100%;
-  background-color: skyblue;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+const TeamRankCon = styled(SoloRankCon)`
 `;
 
 const Rank = ({summonerInfo, matches}) => {

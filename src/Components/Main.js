@@ -27,7 +27,7 @@ const Button = styled.button`
   height: 100%;
   font-size: 22px;
   font-weight: 600;
-  background-color: #b0b0b0;
+  background-color: #32465A;
   color: white;
 `;
 
