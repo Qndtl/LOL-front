@@ -5,11 +5,12 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  color: white;
 `;
 
 const Loader = () => {
   return <Container>
-    This is Loading Component...
+    Loading...
   </Container>
 }
 

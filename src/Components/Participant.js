@@ -30,15 +30,15 @@ const Link = styled.span`
   cursor: pointer;
 `;
 //--------------------------------------------------------------STYLED COMPONENTS END----------------------------------------------------------------
-const Participant = ({gameInfo, participant, championInfo, idx}) => {
-  let champName = Object.values(championInfo).filter(champ => champ.key === gameInfo.participants[participant.participantId - 1].championId.toString())[0].id;
+const Participant = ({ gameInfo, participant, championInfo, idx }) => {
+  let champName = Object.values(championInfo).filter(champ => champ.key === gameInfo?.participants[participant?.participantId - 1]?.championId?.toString())[0]?.id;
 
   const onClick = () => {
     window.location = `/result/${participant.player.summonerName}`;
   }
   return <Container>
-      <ChampImg src={`http://ddragon.leagueoflegends.com/cdn/11.1.1/img/champion/${champName}.png`} />
-      <SummonerName style={gameInfo.participants[idx].teamId === 100 ? {color:"#39ACAF"} : {color:"#EAB544"}}><Link onClick={onClick}>{participant.player.summonerName}</Link></SummonerName>
+    <ChampImg src={`http://ddragon.leagueoflegends.com/cdn/11.1.1/img/champion/${champName}.png`} />
+    <SummonerName style={gameInfo.participants[idx].teamId === 100 ? { color: "#39ACAF" } : { color: "#EAB544" }}><Link onClick={onClick}>{participant.player.summonerName}</Link></SummonerName>
   </Container>
 }
 

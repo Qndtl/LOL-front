@@ -1,73 +1,64 @@
 import { useState } from 'react';
-import {Link} from 'react-router-dom';
-import {withRouter} from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
-import {Search} from '../Components/Icons';
+import { Search } from '../Components/Icons';
 
 const Wrapper = styled.div`
+  width: 100vw;
   height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-image: url(${props => props.src});
   background-position: center;
   background-size: cover;
 `;
 
-const Container = styled.div`
-  height: 100vh;
+const Form = styled.form`
+  width: 100%;
   display: flex;
-  flex-direction: column;
   justify-content: center;
-  align-items: center;
-`;
-
-const Form = styled.div`
-  display: flex;
   input{
-    width: 600px;
-    font-size: 20px;
-    text-align: center;
-    border-top-left-radius: 30px;
-    border-bottom-left-radius: 30px;
-    border-top-right-radius: 0px;
-    border-bottom-right-radius: 0px;
-  }
-  button{
-    width: 70px;
-    border-left: 1px solid grey;
-    background-color: white;
-    border-top-right-radius: 30px;
-    border-bottom-right-radius: 30px;
-    border-top-left-radius: 0px;
-    border-bottom-left-radius: 0px;
-    svg{
-      fill: rgba(0,0,0,0.5)
+    font-size: 18px;
+    width: 50%;
+    height: 60px;
+    border-radius: 30px;
+    background-color: rgba(255,255,255,0.7);
+    &::placeholder{
+      font-size: 20px;
+    }
+    padding-top: 5px;
+    padding-left: 20px;
+    @media screen and (max-width: 1000px){
+      width: 60%;
+    }
+    @media screen and (max-width: 400px){
+      width: 80%;
     }
   }
-  input::placeholder{
-    font-size: 20px;
-  }
-  input, button{
-    height: 60px;
-    opacity: 0.8;
+  position: relative;
+  button{
+    position: relative;
+    right: 40px;
+    top: 5px;
+    svg{
+      fill: grey;
+    }
   }
 `;
 
-const Home = ({history}) => {
+const Home = () => {
   const [summonerName, setSummonerName] = useState('');
-
-  const onEnter = (e) => {
-    if(e.charCode === 13){
-      history.push(`/result/${summonerName}`);
-    }
+  const history = useHistory();
+  const onSubmit = e => {
+    history.push(`/result/${summonerName}`)
   }
-
   return <Wrapper src={'/bg.png'}>
-    <Container>
-      <Form>
-          <input placeholder="Search by summoner name" onChange={e => setSummonerName(e.target.value)} onKeyPress={onEnter} />
-          <Link to={`/result/${summonerName}`}><button><Search /></button></Link>
-        </Form>
-    </Container>
+    <Form onSubmit={onSubmit}>
+      <input placeholder="Search" value={summonerName} onChange={e => setSummonerName(e.target.value)} />
+      <button><Search /></button>
+    </Form>
   </Wrapper>
 }
 
-export default withRouter(Home);
+export default Home;

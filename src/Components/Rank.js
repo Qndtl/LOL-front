@@ -8,10 +8,14 @@ const Container = styled.div`
   display: grid;
   grid-template-rows: 1fr 1fr 2fr;
   grid-gap: 10px;
-
+  color: white;
+  font-weight:600;
   @media all and (max-width: 840px){
     display: grid;
     grid-template-rows: 1fr 1fr 1fr;
+  }
+  h3{
+    font-size: 25px;
   }
 `;
 
@@ -25,7 +29,7 @@ const SoloRankCon = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   border: 1px solid #01B6C8;
 `;
 
@@ -60,7 +64,7 @@ const Rank = ({summonerInfo, matches}) => {
     {
       loading ? <h1>Loading...</h1> : <Container>
         <SoloRankCon>
-          <h3>솔로 랭크</h3>
+          <h3>SOLO Rank</h3>
           {(() => {
             switch (soloRank.tier){
               case undefined:
@@ -108,7 +112,7 @@ const Rank = ({summonerInfo, matches}) => {
           <h4>{soloRank.rank}</h4>
         </SoloRankCon>
         <TeamRankCon>
-          <h3>팀 랭크</h3>
+          <h3>TEAM Rank</h3>
           {(() => {
             switch (teamRank.tier){
               case undefined:

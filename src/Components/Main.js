@@ -31,7 +31,7 @@ const Button = styled.button`
   color: white;
 `;
 
-const Main = ({summonerInfo, matches}) => {
+const Main = ({ summonerInfo, matches }) => {
   //setSlice는 버튼 누르면 10씩 늘어나게
   const [slice, setSlice] = useState(0);
 
@@ -62,15 +62,15 @@ const Main = ({summonerInfo, matches}) => {
     getChampionInfo();
     getSpellInfo();
     getRuneInfo();
-  },[]);
-  
+  }, []);
+
   return !champLoading && !spellLoading && !runeLoading && <Container>
     {
-      matches.slice(slice, slice + 10).map((match, i) => <Match 
-        key={i} 
-        gameId={match.gameId} 
-        lane={match.lane} 
-        role={match.role} 
+      matches?.slice(slice, slice + 10).map((match, i) => <Match
+        key={i}
+        gameId={match.gameId}
+        lane={match.lane}
+        role={match.role}
         summonerInfo={summonerInfo}
         championInfo={championInfo}
         spellInfo={spellInfo}
