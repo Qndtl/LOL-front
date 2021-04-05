@@ -53,8 +53,8 @@ const RFooter = styled.div`
   border: 1px solid black;
 `;
 
-const Result = ({match}) => {
-  const {username} = match.params;
+const Result = ({ match }) => {
+  const { username } = match.params;
   const [loading, setLoading] = useState(true);
   const [summonerInfo, setSummonerInfo] = useState(null);
   const [notFound, setNotFound] = useState(null);
@@ -62,15 +62,19 @@ const Result = ({match}) => {
   const [matches, setMatches] = useState(null);
   const [matchLoading, setMatchLoading] = useState(true);
   const getMatches = async (accountId) => {
-    const result = await axios.post('http://localhost:4000/api/matches',{accountId});
+    const result = await axios.post(process.env.NODE_ENV === "production" ?
+      "http://lol-record.herokuapp.com/api/matches" :
+      'http://localhost:4000/api/matches', { accountId });
     setMatches(result.data.matches);
     setMatchLoading(false);
   }
 
   useEffect(() => {
     const getSummonerInfo = async () => {
-      const summonerResult = await axios.post(`http://localhost:4000/api/summoner`, {summonerName: username});
-      if(summonerResult.data === 404){
+      const summonerResult = await axios.post(process.env.NODE_ENV === "production" ?
+        "http://lol-record.herokuapp.com/api/summoner" :
+        `http://localhost:4000/api/summoner`, { summonerName: username });
+      if (summonerResult.data === 404) {
         setNotFound(true);
       }
       setSummonerInfo(summonerResult.data);
@@ -78,24 +82,24 @@ const Result = ({match}) => {
       getMatches(summonerResult.data.accountId)
     }
     getSummonerInfo();
-  },[username])
+  }, [username])
 
   //console.log(summonerInfo);
   //if(!loading && !matchLoading){console.log(matches)}
   return <Wrapper>
     {
       loading || matchLoading ? <Loader /> : !notFound ? <Container>
-            <RHeader>
-              <Header username={username} profileIcon={summonerInfo.profileIconId} summonerLevel={summonerInfo.summonerLevel} />
-            </RHeader>
-            <RSide>
-              <Rank summonerInfo={summonerInfo} matches={matches}/>
-            </RSide>
-            <RMain>
-              <Main summonerInfo={summonerInfo} matches={matches} />
-            </RMain>
-            <RFooter></RFooter>
-          </Container> : <UserNotFound text="User Not Found" />
+        <RHeader>
+          <Header username={username} profileIcon={summonerInfo.profileIconId} summonerLevel={summonerInfo.summonerLevel} />
+        </RHeader>
+        <RSide>
+          <Rank summonerInfo={summonerInfo} matches={matches} />
+        </RSide>
+        <RMain>
+          <Main summonerInfo={summonerInfo} matches={matches} />
+        </RMain>
+        <RFooter></RFooter>
+      </Container> : <UserNotFound text="User Not Found" />
     }
   </Wrapper>
 }

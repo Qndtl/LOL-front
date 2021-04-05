@@ -36,29 +36,31 @@ const SoloRankCon = styled.div`
 const TeamRankCon = styled(SoloRankCon)`
 `;
 
-const Rank = ({summonerInfo, matches}) => {
+const Rank = ({ summonerInfo, matches }) => {
   const [soloRank, setSoloRank] = useState(null);
   const [teamRank, setTeamRank] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const getLeague = async () => {
-      const result = await axios.post('http://localhost:4000/api/league',{summonerId: summonerInfo.id});
+      const result = await axios.post(process.env.NODE_ENV === "production" ?
+        "http://lol-record.herokuapp.com/api/league" :
+        'http://localhost:4000/api/league', { summonerId: summonerInfo.id });
 
-      if(result.data[0] === undefined){
-        setSoloRank({tier: "UNRANKED", rank: "UNRANKED"})
-      }else{
+      if (result.data[0] === undefined) {
+        setSoloRank({ tier: "UNRANKED", rank: "UNRANKED" })
+      } else {
         setSoloRank(result.data[0]);
       }
-      if(result.data[1] === undefined){
-        setTeamRank({tier: "UNRANKED", rank: "UNRANKED"});
-      }else{
+      if (result.data[1] === undefined) {
+        setTeamRank({ tier: "UNRANKED", rank: "UNRANKED" });
+      } else {
         setTeamRank(result.data[1]);
       }
       setLoading(false);
     }
     getLeague();
-  },[summonerInfo.id]);
+  }, [summonerInfo.id]);
 
   return <>
     {
@@ -66,44 +68,44 @@ const Rank = ({summonerInfo, matches}) => {
         <SoloRankCon>
           <h3>SOLO Rank</h3>
           {(() => {
-            switch (soloRank.tier){
+            switch (soloRank.tier) {
               case undefined:
                 return <span>Unranked</span>
               case 'IRON':
                 return (
-                  <img src={'/ranked-emblems/Emblem_Iron.png'} alt="Iron-tier"/>
+                  <img src={'/ranked-emblems/Emblem_Iron.png'} alt="Iron-tier" />
                 )
               case 'BRONZE':
                 return (
-                  <img src={'/ranked-emblems/Emblem_Bronze.png'} alt="Bronze-tier"/>
+                  <img src={'/ranked-emblems/Emblem_Bronze.png'} alt="Bronze-tier" />
                 )
               case 'SILVER':
                 return (
-                  <img src={'/ranked-emblems/Emblem_Silver.png'} alt="Silver-tier"/>
+                  <img src={'/ranked-emblems/Emblem_Silver.png'} alt="Silver-tier" />
                 )
               case 'GOLD':
                 return (
-                  <img src={'/ranked-emblems/Emblem_Gold.png'} alt="Gold-tier"/>
+                  <img src={'/ranked-emblems/Emblem_Gold.png'} alt="Gold-tier" />
                 )
               case 'PLATINUM':
                 return (
-                  <img src={'/ranked-emblems/Emblem_Platinum.png'} alt="Platinum-tier"/>
+                  <img src={'/ranked-emblems/Emblem_Platinum.png'} alt="Platinum-tier" />
                 )
               case 'DIAMOND':
                 return (
-                  <img src={'/ranked-emblems/Emblem_Diamond.png'} alt="Diamond-tier"/>
+                  <img src={'/ranked-emblems/Emblem_Diamond.png'} alt="Diamond-tier" />
                 )
               case 'MASTER':
                 return (
-                  <img src={'/ranked-emblems/Emblem_Master.png'} alt="Master-tier"/>
+                  <img src={'/ranked-emblems/Emblem_Master.png'} alt="Master-tier" />
                 )
               case 'GRANDMASTER':
                 return (
-                  <img src={'/ranked-emblems/Emblem_Grandmaster.png'} alt="Grandmaster-tier"/>
+                  <img src={'/ranked-emblems/Emblem_Grandmaster.png'} alt="Grandmaster-tier" />
                 )
               case 'CHALLENGER':
                 return (
-                  <img src={'/ranked-emblems/Emblem_Challenger.png'} alt="Challenger-tier"/>
+                  <img src={'/ranked-emblems/Emblem_Challenger.png'} alt="Challenger-tier" />
                 )
               default:
                 return <span>Unranked</span>
@@ -114,44 +116,44 @@ const Rank = ({summonerInfo, matches}) => {
         <TeamRankCon>
           <h3>TEAM Rank</h3>
           {(() => {
-            switch (teamRank.tier){
+            switch (teamRank.tier) {
               case undefined:
                 return <span>Unranked</span>
               case 'IRON':
                 return (
-                  <img src={'/ranked-emblems/Emblem_Iron.png'} alt="Iron-tier"/>
+                  <img src={'/ranked-emblems/Emblem_Iron.png'} alt="Iron-tier" />
                 )
               case 'BRONZE':
                 return (
-                  <img src={'/ranked-emblems/Emblem_Bronze.png'} alt="Bronze-tier"/>
+                  <img src={'/ranked-emblems/Emblem_Bronze.png'} alt="Bronze-tier" />
                 )
               case 'SILVER':
                 return (
-                  <img src={'/ranked-emblems/Emblem_Silver.png'} alt="Silver-tier"/>
+                  <img src={'/ranked-emblems/Emblem_Silver.png'} alt="Silver-tier" />
                 )
               case 'GOLD':
                 return (
-                  <img src={'/ranked-emblems/Emblem_Gold.png'} alt="Gold-tier"/>
+                  <img src={'/ranked-emblems/Emblem_Gold.png'} alt="Gold-tier" />
                 )
               case 'PLATINUM':
                 return (
-                  <img src={'/ranked-emblems/Emblem_Platinum.png'} alt="Platinum-tier"/>
+                  <img src={'/ranked-emblems/Emblem_Platinum.png'} alt="Platinum-tier" />
                 )
               case 'DIAMOND':
                 return (
-                  <img src={'/ranked-emblems/Emblem_Diamond.png'} alt="Diamond-tier"/>
+                  <img src={'/ranked-emblems/Emblem_Diamond.png'} alt="Diamond-tier" />
                 )
               case 'MASTER':
                 return (
-                  <img src={'/ranked-emblems/Emblem_Master.png'} alt="Master-tier"/>
+                  <img src={'/ranked-emblems/Emblem_Master.png'} alt="Master-tier" />
                 )
               case 'GRANDMASTER':
                 return (
-                  <img src={'/ranked-emblems/Emblem_Grandmaster.png'} alt="Grandmaster-tier"/>
+                  <img src={'/ranked-emblems/Emblem_Grandmaster.png'} alt="Grandmaster-tier" />
                 )
               case 'CHALLENGER':
                 return (
-                  <img src={'/ranked-emblems/Emblem_Challenger.png'} alt="Challenger-tier"/>
+                  <img src={'/ranked-emblems/Emblem_Challenger.png'} alt="Challenger-tier" />
                 )
               default:
                 return <span>Unranked</span>
