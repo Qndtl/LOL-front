@@ -45,18 +45,24 @@ const Main = ({ summonerInfo, matches }) => {
 
   useEffect(() => {
     const getChampionInfo = async () => {
-      const result = await axios.get('http://ddragon.leagueoflegends.com/cdn/11.1.1/data/ko_KR/champion.json');
-      setChampionInfo(result.data.data);
+      const result = await axios.get(process.env.NODE_ENV === "production" ?
+        "https://lol-record.herokuapp.com/api/champinfo" :
+        'http://localhost:4000/api/champinfo');
+      setChampionInfo(result.data.champinfo.data);
       setChampLoading(false);
     }
     const getSpellInfo = async () => {
-      const result = await axios.get('http://ddragon.leagueoflegends.com/cdn/11.1.1/data/ko_KR/summoner.json');
-      setSpellInfo(result.data.data);
+      const result = await axios.get(process.env.NODE_ENV === "production" ?
+        "https://lol-record.herokuapp.com/api/spellinfo" :
+        'http://localhost:4000/api/spellinfo');
+      setSpellInfo(result.data.spellinfo.data);
       setSpellLoading(false);
     }
     const getRuneInfo = async () => {
-      const result = await axios.get('https://ddragon.leagueoflegends.com/cdn/11.1.1/data/ko_KR/runesReforged.json');
-      setRuneInfo(result.data);
+      const result = await axios.get(process.env.NODE_ENV === "production" ?
+        "https://lol-record.herokuapp.com/api/runeinfo" :
+        'http://localhost:4000/api/runeinfo');
+      setRuneInfo(result.data.runeinfo);
       setRuneLoading(false);
     }
     getChampionInfo();

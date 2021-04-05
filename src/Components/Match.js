@@ -210,7 +210,7 @@ const Match = ({ gameId, lane, role, summonerInfo, championInfo, spellInfo, rune
     mySubRune = runeInfo[subRuneIdx]?.icon?.split('Styles/')[1];
     //console.log(runeInfo);
   }
-  if (!loading) { console.log('%c gameinfo', 'color: red, font-size: 25px'); console.log(gameInfo); console.log('-----------------------------') }
+  //if (!loading) { console.log('%c gameinfo', 'color: red, font-size: 25px'); console.log(gameInfo); console.log('-----------------------------') }
   //if(!loading){console.log("myinfo");console.log(gameInfo.participantIdentities[myIndex]);console.log('--------------------------')}
   return loading ? <Loader /> : <Container bgColor1={gameInfo?.participants[myIndex]?.stats?.win === true ? "#203748" : "#332B32"} bgColor2={gameInfo?.participants[myIndex]?.stats?.win === true ? "#171D24" : "#241E1E"} borderColor={gameInfo?.participants[myIndex]?.stats?.win === true ? "#001D6C" : gameInfo?.gameDuration < 300 ? "#808080" : "#6A0101"}>
     <MainCon>
