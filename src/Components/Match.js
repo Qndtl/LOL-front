@@ -182,7 +182,7 @@ const Match = ({ gameId, lane, role, summonerInfo, championInfo, spellInfo, rune
   useEffect(() => {
     const getGameInfo = async () => {
       const result = await axios.post(process.env.NODE_ENV === "production" ?
-        "http://lol-record.herokuapp.com/api/match" :
+        "https://lol-record.herokuapp.com/api/match" :
         'http://localhost:4000/api/match', { gameId });
       //console.log(result.data)
       setGameInfo(result?.data);

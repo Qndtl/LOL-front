@@ -63,7 +63,7 @@ const Result = ({ match }) => {
   const [matchLoading, setMatchLoading] = useState(true);
   const getMatches = async (accountId) => {
     const result = await axios.post(process.env.NODE_ENV === "production" ?
-      "http://lol-record.herokuapp.com/api/matches" :
+      "https://lol-record.herokuapp.com/api/matches" :
       'http://localhost:4000/api/matches', { accountId });
     setMatches(result.data.matches);
     setMatchLoading(false);
@@ -72,7 +72,7 @@ const Result = ({ match }) => {
   useEffect(() => {
     const getSummonerInfo = async () => {
       const summonerResult = await axios.post(process.env.NODE_ENV === "production" ?
-        "http://lol-record.herokuapp.com/api/summoner" :
+        "https://lol-record.herokuapp.com/api/summoner" :
         `http://localhost:4000/api/summoner`, { summonerName: username });
       if (summonerResult.data === 404) {
         setNotFound(true);

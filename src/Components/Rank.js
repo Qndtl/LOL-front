@@ -44,7 +44,7 @@ const Rank = ({ summonerInfo, matches }) => {
   useEffect(() => {
     const getLeague = async () => {
       const result = await axios.post(process.env.NODE_ENV === "production" ?
-        "http://lol-record.herokuapp.com/api/league" :
+        "https://lol-record.herokuapp.com/api/league" :
         'http://localhost:4000/api/league', { summonerId: summonerInfo.id });
 
       if (result.data[0] === undefined) {
